@@ -117,9 +117,20 @@ class pages():
         form = imageForm(request.form)
         if request.method == 'POST':
             app.logger.info(form.photo.name)
-            f = request.files['the_files']
+            f = request.files['the_file']
             f.save('/home/forgab/Development/Sakletaren/upload/' + secure_filename(f.filename))
-            return redirect(redir, filename=filename)
+            return redirect(redir)
+        return render_template('photo.html', form=form, redir=route, field=form.photo, label=form.photo.label)
+
+    @app.route('/photo', methods=['GET', 'POST'])
+    def upload_file():
+        if request.method == 'POST':
+            file = request.files['file']
+            if file and allowed_file(file.filename):
+                filename = secure_filename(file.filename)
+                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                return redirect(url_for('uploaded_file',
+                                        filename=filename))
         return render_template('photo.html', form=form, redir=route, field=form.photo, label=form.photo.label)
 
     @app.route('/found', methods = ['GET', 'POST'])
