@@ -13,13 +13,15 @@ A silly app for finding stuff
 
 from flask import Flask, render_template, request, redirect
 from wtforms import Form, RadioField, TextField, TextAreaField, SelectField
+import logging
+from logging.handlers import RotatingFileHandler
 
 app = Flask(__name__)
-sak = {}
 # }}}
 
 # {{{ pages
 class pages():
+    sak = []
     @app.route('/', methods = ['GET', 'POST'])
     def Size():
         redir = '/colour'
@@ -80,13 +82,16 @@ class pages():
         redir = '/found'
         form = materialForm(request.form)
         if request.method == 'POST':
+            app.logger.info(form.material)
             sak['material'] = form.material
+            app.logger.info(sak['material'])
             return redirect(redir)
         return render_template('template.html', form=form, redir=redir, field=form.material, label=form.material.label)
 
     @app.route('/found', methods = ['GET', 'POST'])
     def Found():
-        return render_template('found.html')
+        app.logger.error(unicode(pages.sak))
+        return render_template('found.html', sak=pages.sak, label=u'Jag vet vart den är, den är;')
         # TODO return funny result
 
 # }}}
@@ -122,5 +127,8 @@ class materialForm(Form):
 
 # }}}
 if __name__ == '__main__':
+    handler = RotatingFileHandler('foo.log', maxBytes=10000, backupCount=1)
+    handler.setLevel(logging.INFO)
+    app.logger.addHandler(handler)
     app.debug = True
     app.run(host='0.0.0.0')

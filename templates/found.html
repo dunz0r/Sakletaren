@@ -6,10 +6,5 @@
 {% endblock %}
 {% block content %}
 <h2>{{ label }}</h2>
-<form method="GET" action="{{ redir }}">
-	<table>
-		{{ render_field(field) }}
-	</table>
-	<input type=submit method=POST value=N&auml;sta>
-</form>
+{{ sak['importance'] }}
 {% endblock %}
