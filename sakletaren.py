@@ -9,24 +9,21 @@
 """
 A silly app for finding stuff
 """
-
 # {{{ Libraries and global settings
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+from wtforms import Form, BooleanField, TextField, TextAreaField, SelectField
 
 app = Flask(__name__)
 # }}}
 # {{{ pages
-class sak():
-    """This is the main class for sak to find.
-    It holds all the pages
-    """
-
-    sakProperties = {}
-
-    @app.route('/')
+class pages():
+    @app.route('/', methods = ['GET', 'POST'])
     def index():
-        return render_template('first.html')
+        form = sizeForm(request.form)
+        if request.method == 'POST' and form.validate():
+            sak['size'] = form.size
+        return render_template('first.html', form=form)
 
     @app.route('/size')
     def Size():
@@ -60,6 +57,11 @@ class sak():
     def Material():
         return render_template('material.html')
 
+# }}}
+# {{{ forms
+class sizeForm(Form):
+    sizeChoices = [('1', 'Liten'), ('2','Lagom'), ('3','Ganska stor'), ('3', 'Sjukt stor')]
+    size = SelectField(u'Storlek', choices=sizeChoices)
 # }}}
 if __name__ == '__main__':
     app.debug = True
