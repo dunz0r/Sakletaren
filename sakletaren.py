@@ -12,14 +12,14 @@ A silly app for finding stuff
 # {{{ Libraries and global settings
 
 from flask import Flask, render_template, request, redirect
-from wtforms import Form, SelectField
+from wtforms import Form, SelectField, FileField
 import logging
 from PIL import Image, ImageDraw
 from logging.handlers import RotatingFileHandler
 from werkzeug import secure_filename
+UPLOAD_FOLDER = 'upload/'
+ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
-UPLOAD_FOLDER = './uploads'
-ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 # }}}
@@ -101,10 +101,13 @@ class pages():
         redir = '/image'
         form = materialForm(request.form)
         if request.method == 'POST':
-            app.logger.info(form.material)
             sak = sak + form.material.data
             return redirect(redir)
         return render_template('template.html', form=form, redir=route, field=form.material, label=form.material.label)
+
+    def allowed_file(filename):
+        return '.' in filename and \
+                filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
     @app.route('/image', methods = ['GET', 'POST'])
     def Image():
@@ -112,12 +115,22 @@ class pages():
         route = '/image'
         redir = '/found'
         form = imageForm(request.form)
+        if request.method == 'POST':
+            app.logger.info('post')
+            sfile = request.files['photo']
+            app.logger.info('sfile')
+            if sfile and allowed_file(sfile.filename):
+                app.logger.info('file')
+                filename = secure_filename(form.photo.data.filename)
+                sfile.save(os.path.join('.', filename))
+                return redirect(redir, filename=filename)
+        return render_template('photo.html', form=form, redir=route, field=form.photo, label=form.photo.label)
 
     @app.route('/found', methods = ['GET', 'POST'])
     def Found():
         global sak
         app.logger.info(unicode(sak))
-        return render_template('found.html', thing=sak, label=u'Jag vet vart den är, den är;')
+        return render_template('found.html', thing=sak, label=u'Här är den:')
         # TODO return funny result
 
 # }}}
@@ -152,7 +165,7 @@ class materialForm(Form):
     material = SelectField(u'I vilket material är saken?', choices=materialChoices)
 
 class imageForm(Form):
-    asdf = ''
+    photo = FileField(u'Ladda upp en bild på rummet du befinner dig i')
 
 
 # }}}
