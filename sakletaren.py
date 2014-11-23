@@ -14,6 +14,7 @@ A silly app for finding stuff
 from flask import Flask, render_template, request, redirect
 from wtforms import Form, SelectField, FileField
 import logging
+import random
 from PIL import Image, ImageDraw
 from logging.handlers import RotatingFileHandler
 from werkzeug import secure_filename
