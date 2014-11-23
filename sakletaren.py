@@ -30,17 +30,17 @@ def sakColour():
     return 'def colour'
 
 @app.route('/weight')
-def sakColour():
+def sakWeight():
     return 'def weight'
 
 
 @app.route('/importance')
-def sakColour():
+def sakImportance():
     return 'def importance'
 
-@app.route('/importance')
-def sakColour():
-    return 'def importance'
+@app.route('/electronic')
+def sakElectronic():
+    return 'def electronic'
 
 
 # }}}
