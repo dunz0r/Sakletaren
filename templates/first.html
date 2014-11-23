@@ -1,10 +1,10 @@
 {% extends "_template_include.html" %}
+{% from "_formhelpers.html" import render_field %}
 {% block title %}Index{% endblock %}
 {% block head %}
   {{ super() }}
 {% endblock %}
 {% block content %}
-  <h1>Index</h1>
-  <p class="important">
-    This is so meta
+  <h1>V&auml;lj storlek</h1>
+  {{ render_field(form.size) }}
 {% endblock %}

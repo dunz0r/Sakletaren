@@ -11,47 +11,51 @@ A silly app for finding stuff
 """
 # {{{ Libraries and global settings
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from wtforms import Form, BooleanField, TextField, TextAreaField, SelectField
 
 app = Flask(__name__)
 # }}}
 # {{{ pages
-@app.route('/')
-def index():
-    return render_template('first.html')
+class pages():
+    @app.route('/', methods = ['GET', 'POST'])
+    def index():
+        form = sizeForm(request.form)
+        if request.method == 'POST' and form.validate():
+            sak['size'] = form.size
+        return render_template('first.html')
 
-@app.route('/size')
-def Size():
-    return render_template('size.html')
+    @app.route('/size')
+    def Size():
+        return render_template('size.html')
 
-@app.route('/colour')
-def Colour():
-    return render_template('colour.html')
+    @app.route('/colour')
+    def Colour():
+        return render_template('colour.html')
 
-@app.route('/weight')
-def Weight():
-    return render_template('weight.html')
+    @app.route('/weight')
+    def Weight():
+        return render_template('weight.html')
 
-@app.route('/importance')
-def Importance():
-    return render_template('importance.html')
+    @app.route('/importance')
+    def Importance():
+        return render_template('importance.html')
 
-@app.route('/electronic')
-def Electronic():
-    return render_template('electronic.html')
+    @app.route('/electronic')
+    def Electronic():
+        return render_template('electronic.html')
 
-@app.route('/lastseen')
-def LastSeen():
-    return render_template('lastseen.html')
+    @app.route('/lastseen')
+    def LastSeen():
+        return render_template('lastseen.html')
 
-@app.route('/outin')
-def OutIn():
-    return render_template('outin.html')
+    @app.route('/outin')
+    def OutIn():
+        return render_template('outin.html')
 
-@app.route('/material')
-def Material():
-    return render_template('material.html')
+    @app.route('/material')
+    def Material():
+        return render_template('material.html')
 
 # }}}
 # {{{ forms
