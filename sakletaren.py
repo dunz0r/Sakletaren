@@ -16,8 +16,12 @@ from wtforms import Form, SelectField
 import logging
 from PIL import Image, ImageDraw
 from logging.handlers import RotatingFileHandler
+from werkzeug import secure_filename
 
+UPLOAD_FOLDER = './uploads'
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 # }}}
 
 sak = ''
@@ -94,7 +98,7 @@ class pages():
     def Material():
         global sak
         route = '/material'
-        redir = '/found'
+        redir = '/image'
         form = materialForm(request.form)
         if request.method == 'POST':
             app.logger.info(form.material)
@@ -103,6 +107,12 @@ class pages():
         return render_template('template.html', form=form, redir=route, field=form.material, label=form.material.label)
 
     @app.route('/image', methods = ['GET', 'POST'])
+    def Image():
+        global sak
+        route = '/image'
+        redir = '/found'
+        form = imageForm(request.form)
+
     @app.route('/found', methods = ['GET', 'POST'])
     def Found():
         global sak
@@ -140,6 +150,10 @@ class outInForm(Form):
 class materialForm(Form):
     materialChoices = [('1', u'Cederträ'), ('2', u'Betong'), ('3', u'Plast'), ('4', u'Fryst kaffe'), ('5', u'Kolfiber'), ('6', u'Titan'), ('7', 'Ull')]
     material = SelectField(u'I vilket material är saken?', choices=materialChoices)
+
+class imageForm(Form):
+    asdf = ''
+
 
 # }}}
 if __name__ == '__main__':
