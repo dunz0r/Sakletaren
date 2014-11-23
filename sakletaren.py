@@ -26,56 +26,56 @@ class pages():
         if request.method == 'POST':
             sak['size'] = form.size
             return redirect('/colour')
-        return render_template('template.html', form=form)
+        return render_template('template.html', form=form, field=form.size, label=form.size.label)
 
     @app.route('/colour', methods = ['GET', 'POST'])
     def Colour():
         form = colourForm(request.form)
         if request.method == 'POST':
             sak['colour'] = form.colour
-            return redirect('/weight')
-        return render_template('template.html', form=form)
+            return redirect('/importance')
+        return render_template('template.html', form=form, field=form.colour, label=form.colour.label)
 
     @app.route('/importance', methods = ['GET', 'POST'])
     def Importance():
         form = importanceForm(request.form)
         if request.method == 'POST':
-            sak['colour'] = form.importance
+            sak['importance'] = form.importance
             return redirect('/electronic')
-        return render_template('template.html', form=form)
+        return render_template('template.html', form=form, field=form.importance, label=form.importance.label)
 
     @app.route('/electronic', methods = ['GET', 'POST'])
     def Electronic():
         form = electronicForm(request.form)
         if request.method == 'POST':
-            sak['colour'] = form.electronic
+            sak['electronic'] = form.electronic
             return redirect('/lastseen')
-        return render_template('template.html', form=form)
+        return render_template('template.html', form=form, field=form.electronic, label=form.electronic.label)
 
 
     @app.route('/lastseen', methods = ['GET', 'POST'])
     def LastSeen():
         form = lastSeenForm(request.form)
         if request.method == 'POST':
-            sak['colour'] = form.lastSeen
+            sak['lastseen'] = form.lastSeen
             return redirect('/outin')
-        return render_template('template.html', form=form)
+        return render_template('template.html', form=form, field=form.lastseen, label=form.lastSeen.label)
 
     @app.route('/outin', methods = ['GET', 'POST'])
     def OutIn():
         form = outInForm(request.form)
         if request.method == 'POST':
-            sak['colour'] = form.outIn
+            sak['outin'] = form.outIn
             return redirect('/material')
-        return render_template('template.html', form=form)
+        return render_template('template.html', form=form, field=form.outin, label=form.outIn.label)
 
     @app.route('/material', methods = ['GET', 'POST'])
     def Material():
         form = materialForm(request.form)
         if request.method == 'POST':
-            sak['colour'] = form.material
+            sak['material'] = form.material
             return redirect('/found')
-        return render_template('template.html', form=form)
+        return render_template('template.html', form=form, field=form.material, label=form.material.label)
 
     @app.route('/found', methods = ['GET', 'POST'])
     def Found():
