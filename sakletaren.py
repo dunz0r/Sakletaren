@@ -25,6 +25,9 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 # }}}
 
 sak = ''
+def allowed_file(filename):
+    return '.' in filename and \
+            filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 # {{{ pages
 class pages():
     @app.route('/', methods = ['GET', 'POST'])
@@ -105,9 +108,6 @@ class pages():
             return redirect(redir)
         return render_template('template.html', form=form, redir=route, field=form.material, label=form.material.label)
 
-    def allowed_file(filename):
-        return '.' in filename and \
-                filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
     @app.route('/image', methods = ['GET', 'POST'])
     def Image():
@@ -116,14 +116,10 @@ class pages():
         redir = '/found'
         form = imageForm(request.form)
         if request.method == 'POST':
-            app.logger.info('post')
-            sfile = request.files['photo']
-            app.logger.info('sfile')
-            if sfile and allowed_file(sfile.filename):
-                app.logger.info('file')
-                filename = secure_filename(form.photo.data.filename)
-                sfile.save(os.path.join('.', filename))
-                return redirect(redir, filename=filename)
+            app.logger.info(form.photo.name)
+            f = request.files['the_files']
+            f.save('/home/forgab/Development/Sakletaren/upload/' + secure_filename(f.filename))
+            return redirect(redir, filename=filename)
         return render_template('photo.html', form=form, redir=route, field=form.photo, label=form.photo.label)
 
     @app.route('/found', methods = ['GET', 'POST'])
