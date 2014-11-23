@@ -15,18 +15,25 @@ from flask import Flask, render_template, request, url_for
 from wtforms import Form, BooleanField, TextField, TextAreaField, SelectField
 
 app = Flask(__name__)
+sak = {}
 # }}}
+
 # {{{ pages
 class pages():
     @app.route('/', methods = ['GET', 'POST'])
     def Size():
         form = sizeForm(request.form)
-        if request.method == 'POST' and form.validate():
+        if request.method == 'POST':
             sak['size'] = form.size
+            return redirect('/colour')
         return render_template('first.html', form=form)
 
-    @app.route('/colour')
+    @app.route('/colour', methods = ['GET', 'POST'])
     def Colour():
+        form = colourForm(request.form)
+        if request.method == 'POST':
+            sak['colour'] = form.colour
+            return redirect('/weight')
         return render_template('colour.html')
 
     @app.route('/weight')
@@ -54,10 +61,16 @@ class pages():
         return render_template('material.html')
 
 # }}}
+
 # {{{ forms
 class sizeForm(Form):
     sizeChoices = [('1', 'Liten'), ('2','Lagom'), ('3','Ganska stor'), ('3', 'Sjukt stor')]
     size = SelectField(u'Storlek', choices=sizeChoices)
+
+class colourForm(Form):
+    colourChoices = [('1', 'R&ouml;d')], [('2', 'Svart')], [('3', 'Gr&ouml;')], [('4', 'Turkos')], [('5', 'Scharlakansr&ouml;d')], [('6', 'Lila')], 
+    colour = SelectField(u'F&auml;', choices=colourChoices)
+
 # }}}
 if __name__ == '__main__':
     app.debug = True

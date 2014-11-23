@@ -6,8 +6,10 @@
 {% endblock %}
 {% block content %}
 <h3>V&auml;lj storlek</h3>
-<table>
-{{ render_field(form.size) }}
-</table>
-<input type=submit value=N&auml;sta>
+<form method="POST" action="/colour">
+	<table>
+		{{ render_field(form.size) }}
+	</table>
+	<input type=submit method=POST value=N&auml;sta>
+</form>
 {% endblock %}
