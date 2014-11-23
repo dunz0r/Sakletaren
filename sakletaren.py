@@ -23,7 +23,7 @@ class pages():
         form = sizeForm(request.form)
         if request.method == 'POST' and form.validate():
             sak['size'] = form.size
-        return render_template('first.html')
+        return render_template('first.html', form=form)
 
     @app.route('/size')
     def Size():

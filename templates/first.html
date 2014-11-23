@@ -2,9 +2,10 @@
 {% from "_formhelpers.html" import render_field %}
 {% block title %}Index{% endblock %}
 {% block head %}
-  {{ super() }}
+{{ super() }}
 {% endblock %}
 {% block content %}
-  <h1>V&auml;lj storlek</h1>
-  {{ render_field(form.size) }}
+<h1>V&auml;lj storlek</h1>
+{{ render_field(form.size) }}
+<input type=submit value=N&auml;sta>
 {% endblock %}
