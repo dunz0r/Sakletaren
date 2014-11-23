@@ -101,7 +101,7 @@ class pages():
     def Material():
         global sak
         route = '/material'
-        redir = '/image'
+        redir = '/photo'
         form = materialForm(request.form)
         if request.method == 'POST':
             sak = sak + form.material.data
@@ -124,13 +124,18 @@ class pages():
 
     @app.route('/photo', methods=['GET', 'POST'])
     def upload_file():
+        global sak
+        form = imageForm()
+        route = '/photo'
+        redir = '/found'
         if request.method == 'POST':
-            file = request.files['file']
-            if file and allowed_file(file.filename):
-                filename = secure_filename(file.filename)
-                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-                return redirect(url_for('uploaded_file',
-                                        filename=filename))
+            im = Image.open('static/room.jpg')
+            random.seed(int(sak))
+            draw = ImageDraw.Draw(im)
+            xy1 = (im.size[0] - ra
+            draw.ellipse([100,500, 204,604], fill = 128)
+            im.save('/home/gabriel/Development/Sakletaren/static/out.png', 'PNG')
+            return redirect(redir)
         return render_template('photo.html', form=form, redir=route, field=form.photo, label=form.photo.label)
 
     @app.route('/found', methods = ['GET', 'POST'])
