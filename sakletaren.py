@@ -4,7 +4,7 @@
 #
 # Copyright © 2014 Gabriel Fornaeus <gf@hax0r.se>
 #
-# Distributed under terms of the GPLv3 license.
+# Distributed under terms of the GPLv2 license.
 
 """
 A silly app for finding stuff
