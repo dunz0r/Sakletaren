@@ -1,12 +1,22 @@
-{% extends "_template_include.html" %}
+<html>
+	<head>
+		{% block head %}
+		<link rel="stylesheet" href="{{ url_for('static', filename='Sakletaren.css') }}">
+		<link href='http://fonts.googleapis.com/css?family=Oswald:300,700,400' rel='stylesheet' type='text/css'>
+		<title>Found it!</title>
 {% from "_formhelpers.html" import render_field %}
-{% block title %}Index{% endblock %}
-{% block head %}
 {{ super() }}
 {% endblock %}
 {% block content %}
 <h2>{{ label }}</h2>
-<pre>
+<h1>Sakletr</h1>
+<div id="content"><p>
 <img src="static/out.png" width=70% height=70%>
-</pre>
+</p>
+		<div id="footer">
+			{% block footer %}
+			<br />&copy; Copyright 2014 by <a href="http://hax0r.se/">Gabriel Fornaeus</a> &amp; <a href="http://tinnio.net">Mats Karlsson</a>
+			{% endblock %}
+		</div>
+
 {% endblock %}
