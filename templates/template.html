@@ -6,7 +6,7 @@
 {% endblock %}
 {% block content %}
 <h2>{{ label }}</h2>
-<form method="GET" action="{{ redir }}">
+<form method="POST" action="{{ redir }}">
 	<table>
 		{{ render_field(field) }}
 	</table>

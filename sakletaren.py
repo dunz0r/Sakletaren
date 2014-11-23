@@ -19,79 +19,87 @@ from logging.handlers import RotatingFileHandler
 app = Flask(__name__)
 # }}}
 
+sak = ''
 # {{{ pages
 class pages():
-    sak = []
     @app.route('/', methods = ['GET', 'POST'])
     def Size():
+        global sak
         redir = '/colour'
         form = sizeForm(request.form)
         if request.method == 'POST':
-            sak['size'] = form.size
+            sak = sak + form.size
             return redirect(redir)
         return render_template('template.html', form=form, redir=redir, field=form.size, label=form.size.label)
 
     @app.route('/colour', methods = ['GET', 'POST'])
     def Colour():
+        global sak
         redir = '/importance'
         form = colourForm(request.form)
         if request.method == 'POST':
-            sak['colour'] = form.colour
+            sak = sak + form.colour
             return redirect(redir)
         return render_template('template.html', form=form, redir=redir, field=form.colour, label=form.colour.label)
 
     @app.route('/importance', methods = ['GET', 'POST'])
     def Importance():
+        global sak
         redir = '/electronic'
         form = importanceForm(request.form)
         if request.method == 'POST':
-            sak['importance'] = form.importance
+            sak = sak + form.importance
             return redirect(redir)
         return render_template('template.html', form=form, redir=redir, field=form.importance, label=form.importance.label)
 
     @app.route('/electronic', methods = ['GET', 'POST'])
     def Electronic():
+        global sak
         redir = '/lastseen'
         form = electronicForm(request.form)
         if request.method == 'POST':
-            sak['electronic'] = form.electronic
+            sak = sak + form.electronic
             return redirect(redir)
         return render_template('template.html', form=form, redir=redir, field=form.electronic, label=form.electronic.label)
 
 
     @app.route('/lastseen', methods = ['GET', 'POST'])
     def LastSeen():
+        global sak
         redir = '/outin'
         form = lastSeenForm(request.form)
         if request.method == 'POST':
-            sak['lastseen'] = form.lastSeen
+            sak = sak + form.lastSeen
             return redirect(redir)
         return render_template('template.html', form=form, redir=redir, field=form.lastSeen, label=form.lastSeen.label)
 
     @app.route('/outin', methods = ['GET', 'POST'])
     def OutIn():
+        global sak
         redir = '/material'
         form = outInForm(request.form)
         if request.method == 'POST':
-            sak['outin'] = form.outIn
+            sak = sak + form.outIn
             return redirect(redir)
         return render_template('template.html', form=form, redir=redir, field=form.outIn, label=form.outIn.label)
 
     @app.route('/material', methods = ['GET', 'POST'])
     def Material():
+        global sak
         redir = '/found'
         form = materialForm(request.form)
         if request.method == 'POST':
             app.logger.info(form.material)
-            sak['material'] = form.material
+            sak = sak + form.material
             app.logger.info(sak['material'])
             return redirect(redir)
         return render_template('template.html', form=form, redir=redir, field=form.material, label=form.material.label)
 
     @app.route('/found', methods = ['GET', 'POST'])
     def Found():
-        app.logger.error(unicode(pages.sak))
-        return render_template('found.html', sak=pages.sak, label=u'Jag vet vart den är, den är;')
+        global sak
+        app.logger.info(unicode(sak))
+        return render_template('found.html', sak=sak, label=u'Jag vet vart den är, den är;')
         # TODO return funny result
 
 # }}}
