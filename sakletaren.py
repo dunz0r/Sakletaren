@@ -14,6 +14,7 @@ A silly app for finding stuff
 from flask import Flask, render_template, request, redirect
 from wtforms import Form, SelectField
 import logging
+from PIL import Image, ImageDraw
 from logging.handlers import RotatingFileHandler
 
 app = Flask(__name__)
@@ -98,10 +99,10 @@ class pages():
         if request.method == 'POST':
             app.logger.info(form.material)
             sak = sak + form.material.data
-            app.logger.info(sak['material'])
             return redirect(redir)
         return render_template('template.html', form=form, redir=route, field=form.material, label=form.material.label)
 
+    @app.route('/image', methods = ['GET', 'POST'])
     @app.route('/found', methods = ['GET', 'POST'])
     def Found():
         global sak
