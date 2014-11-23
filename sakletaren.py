@@ -14,6 +14,7 @@ A silly app for finding stuff
 from flask import Flask, render_template, request, redirect
 from wtforms import Form, SelectField, FileField
 import logging
+import time
 import random
 from PIL import Image, ImageDraw
 from logging.handlers import RotatingFileHandler
@@ -25,6 +26,7 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 # }}}
 
+stamp = ''
 sak = ''
 def allowed_file(filename):
     return '.' in filename and \
@@ -109,40 +111,35 @@ class pages():
             return redirect(redir)
         return render_template('template.html', form=form, redir=route, field=form.material, label=form.material.label)
 
-
-    @app.route('/image', methods = ['GET', 'POST'])
-    def Image():
-        global sak
-        route = '/image'
-        redir = '/found'
-        form = imageForm(request.form)
-        if request.method == 'POST':
-            app.logger.info(form.photo.name)
-            f = request.files['the_file']
-            f.save('/home/forgab/Development/Sakletaren/upload/' + secure_filename(f.filename))
-            return redirect(redir)
-        return render_template('photo.html', form=form, redir=route, field=form.photo, label=form.photo.label)
-
     @app.route('/photo', methods=['GET', 'POST'])
     def upload_file():
         global sak
+        global stamp
         form = imageForm()
         route = '/photo'
         redir = '/found'
+        random.seed(int(sak))
+        stamp = str(random.randint(100,1000))
         if request.method == 'POST':
             im = Image.open('static/room.jpg')
-            random.seed(int(sak))
             draw = ImageDraw.Draw(im)
-            draw.ellipse([100,500, 204,604], fill = 128)
-            im.save('static/out.png', 'PNG')
+            x0 = random.randint(100, im.size[0])
+            app.logger.info(x0)
+            y0 = random.randint(100, im.size[1])
+            app.logger.info(y0)
+            x1 = x0 + 200
+            y1 = y0 + 200 
+            draw.ellipse([(x0, y0), (x1, y1)], fill = 'yellow')
+            im.save('static/' + stamp + '.png', 'PNG')
             return redirect(redir)
         return render_template('photo.html', form=form, redir=route, field=form.photo, label=form.photo.label)
 
     @app.route('/found', methods = ['GET', 'POST'])
     def Found():
         global sak
+        global stamp
         app.logger.info(unicode(sak))
-        return render_template('found.html', thing=sak, label=u'Här är den:')
+        return render_template('found.html', filez=stamp, thing=sak, label=u'Här är den:')
         # TODO return funny result
 
 # }}}
