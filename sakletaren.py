@@ -68,8 +68,8 @@ class sizeForm(Form):
     size = SelectField(u'Storlek', choices=sizeChoices)
 
 class colourForm(Form):
-    colourChoices = [('1', 'R&ouml;d')], [('2', 'Svart')], [('3', 'Gr&ouml;')], [('4', 'Turkos')], [('5', 'Scharlakansr&ouml;d')], [('6', 'Lila')], 
-    colour = SelectField(u'F&auml;', choices=colourChoices)
+    colourChoices = [('1', u'Bränd Umbra'), ('2', u'Nattsvart'), ('3', u'Skogsgrön'), ('4', u'Turkos'), ('5', u'Scharlakansröd'), ('6', u'Lila'), ('7', 'Gammelrosa')]
+    colour = SelectField(u'Färg', choices=colourChoices)
 
 # }}}
 if __name__ == '__main__':
