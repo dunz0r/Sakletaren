@@ -86,7 +86,7 @@ class pages():
 
     @app.route('/found', methods = ['GET', 'POST'])
     def Found():
-        return sak()
+        return render_template('found.html')
         # TODO return funny result
 
 # }}}
