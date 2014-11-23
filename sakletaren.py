@@ -134,7 +134,7 @@ class pages():
             random.seed(int(sak))
             draw = ImageDraw.Draw(im)
             draw.ellipse([100,500, 204,604], fill = 128)
-            im.save('/home/gabriel/Development/Sakletaren/static/out.png', 'PNG')
+            im.save('static/out.png', 'PNG')
             return redirect(redir)
         return render_template('photo.html', form=form, redir=route, field=form.photo, label=form.photo.label)
 
