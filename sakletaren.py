@@ -76,9 +76,10 @@ class pages():
             sak['colour'] = form.material
             return redirect('/found')
         return render_template('template.html', form=form)
-    
-    @app.route('found'), methods = ['GET', 'POST']
+
+    @app.route('/found', methods = ['GET', 'POST'])
     def Found():
+        return "find"
         # TODO return funny result
 
 # }}}
@@ -86,11 +87,11 @@ class pages():
 # {{{ forms
 class sizeForm(Form):
     sizeChoices = [('1', 'Liten'), ('2','Lagom'), ('3','Ganska stor'), ('3', 'Sjukt stor')]
-    size = SelectField(u'Storlek', choices=sizeChoices)
+    size = SelectField(u'Hur stor är saken?', choices=sizeChoices)
 
 class colourForm(Form):
     colourChoices = [('1', u'Bränd Umbra'), ('2', u'Nattsvart'), ('3', u'Skogsgrön'), ('4', u'Turkos'), ('5', u'Scharlakansröd'), ('6', u'Lila'), ('7', 'Gammelrosa')]
-    colour = SelectField(u'Färg', choices=colourChoices)
+    colour = SelectField(u'Vilken färg har saken?', choices=colourChoices)
 
 class importanceForm(Form):
     importanceChoices = [('1', u'Jag bryr mig inte'), ('2', u'Jag gillar den lite'), ('3', u'Det är det käraste jag äger'), ('4', u'Utan den här så dör jag')]
@@ -110,7 +111,7 @@ class outInForm(Form):
 
 class materialForm(Form):
     materialChoices = [('1', u'Cederträ'), ('2', u'Betong'), ('3', u'Plast'), ('4', u'Fryst kaffe'), ('5', u'Kolfiber'), ('6', u'Titan'), ('7', 'Ull')]
-    material = SelectField(u'Vilket material är saken?', choices=colourChoices)
+    material = SelectField(u'I vilket material är saken?', choices=materialChoices)
 
 # }}}
 if __name__ == '__main__':
