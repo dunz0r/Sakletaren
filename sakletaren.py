@@ -12,7 +12,7 @@ A silly app for finding stuff
 # {{{ Libraries and global settings
 
 from flask import Flask, render_template, request, redirect
-from wtforms import Form, BooleanField, TextField, TextAreaField, SelectField
+from wtforms import Form, RadioField, TextField, TextAreaField, SelectField
 
 app = Flask(__name__)
 sak = {}
@@ -27,7 +27,7 @@ class pages():
         if request.method == 'POST':
             sak['size'] = form.size
             return redirect(redir)
-        return render_template('template.html', redir='/colour', form=form, field=form.size, label=form.size.label)
+        return render_template('template.html', form=form, redir=redir, field=form.size, label=form.size.label)
 
     @app.route('/colour', methods = ['GET', 'POST'])
     def Colour():
@@ -36,7 +36,7 @@ class pages():
         if request.method == 'POST':
             sak['colour'] = form.colour
             return redirect(redir)
-        return render_template('template.html', form=form, field=form.colour, label=form.colour.label)
+        return render_template('template.html', form=form, redir=redir, field=form.colour, label=form.colour.label)
 
     @app.route('/importance', methods = ['GET', 'POST'])
     def Importance():
@@ -45,7 +45,7 @@ class pages():
         if request.method == 'POST':
             sak['importance'] = form.importance
             return redirect(redir)
-        return render_template('template.html', form=form, field=form.importance, label=form.importance.label)
+        return render_template('template.html', form=form, redir=redir, field=form.importance, label=form.importance.label)
 
     @app.route('/electronic', methods = ['GET', 'POST'])
     def Electronic():
@@ -54,7 +54,7 @@ class pages():
         if request.method == 'POST':
             sak['electronic'] = form.electronic
             return redirect(redir)
-        return render_template('template.html', form=form, field=form.electronic, label=form.electronic.label)
+        return render_template('template.html', form=form, redir=redir, field=form.electronic, label=form.electronic.label)
 
 
     @app.route('/lastseen', methods = ['GET', 'POST'])
@@ -64,7 +64,7 @@ class pages():
         if request.method == 'POST':
             sak['lastseen'] = form.lastSeen
             return redirect(redir)
-        return render_template('template.html', form=form, field=form.lastseen, label=form.lastSeen.label)
+        return render_template('template.html', form=form, redir=redir, field=form.lastseen, label=form.lastSeen.label)
 
     @app.route('/outin', methods = ['GET', 'POST'])
     def OutIn():
@@ -73,7 +73,7 @@ class pages():
         if request.method == 'POST':
             sak['outin'] = form.outIn
             return redirect(redir)
-        return render_template('template.html', form=form, field=form.outin, label=form.outIn.label)
+        return render_template('template.html', form=form, redir=redir, field=form.outin, label=form.outIn.label)
 
     @app.route('/material', methods = ['GET', 'POST'])
     def Material():
@@ -82,7 +82,7 @@ class pages():
         if request.method == 'POST':
             sak['material'] = form.material
             return redirect(redir)
-        return render_template('template.html', form=form, field=form.material, label=form.material.label)
+        return render_template('template.html', form=form, redir=redir, field=form.material, label=form.material.label)
 
     @app.route('/found', methods = ['GET', 'POST'])
     def Found():
@@ -106,7 +106,7 @@ class importanceForm(Form):
 
 class electronicForm(Form):
     electronicChoices = [('1', u'Nej'), ('2', u'Kanske')]
-    electronic = BooleanField(u'Är den elektronisk?', choices=electronicChoices)
+    electronic = RadioField(u'Är den elektronisk?', choices=electronicChoices)
 
 class lastSeenForm(Form):
     lastSeenChoices = [('1', u'Igår'), ('2', u'Förra måndagen'), ('3', u'Förut')]
@@ -114,7 +114,7 @@ class lastSeenForm(Form):
 
 class outInForm(Form):
     outInChoices = [('1', u'Ute'), ('2', u'Inne')]
-    outIn = BooleanField(u'Hade du den ute eller inne?', choices=outInChoices)
+    outIn = RadioField(u'Hade du den ute eller inne?', choices=outInChoices)
 
 class materialForm(Form):
     materialChoices = [('1', u'Cederträ'), ('2', u'Betong'), ('3', u'Plast'), ('4', u'Fryst kaffe'), ('5', u'Kolfiber'), ('6', u'Titan'), ('7', 'Ull')]
