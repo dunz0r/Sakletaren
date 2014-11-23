@@ -132,7 +132,6 @@ class pages():
             im = Image.open('static/room.jpg')
             random.seed(int(sak))
             draw = ImageDraw.Draw(im)
-            xy1 = (im.size[0] - ra
             draw.ellipse([100,500, 204,604], fill = 128)
             im.save('/home/gabriel/Development/Sakletaren/static/out.png', 'PNG')
             return redirect(redir)
