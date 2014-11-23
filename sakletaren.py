@@ -71,6 +71,26 @@ class colourForm(Form):
     colourChoices = [('1', u'Bränd Umbra'), ('2', u'Nattsvart'), ('3', u'Skogsgrön'), ('4', u'Turkos'), ('5', u'Scharlakansröd'), ('6', u'Lila'), ('7', 'Gammelrosa')]
     colour = SelectField(u'Färg', choices=colourChoices)
 
+class importanceForm(Form):
+    colourChoices = [('1', u'Bränd Umbra'), ('2', u'Nattsvart'), ('3', u'Skogsgrön'), ('4', u'Turkos'), ('5', u'Scharlakansröd'), ('6', u'Lila'), ('7', 'Gammelrosa')]
+    colour = SelectField(u'Färg', choices=colourChoices)
+
+class electronicForm(Form):
+    colourChoices = [('1', u'Bränd Umbra'), ('2', u'Nattsvart'), ('3', u'Skogsgrön'), ('4', u'Turkos'), ('5', u'Scharlakansröd'), ('6', u'Lila'), ('7', 'Gammelrosa')]
+    colour = SelectField(u'Färg', choices=colourChoices)
+
+class lastSeenForm(Form):
+    colourChoices = [('1', u'Bränd Umbra'), ('2', u'Nattsvart'), ('3', u'Skogsgrön'), ('4', u'Turkos'), ('5', u'Scharlakansröd'), ('6', u'Lila'), ('7', 'Gammelrosa')]
+    colour = SelectField(u'Färg', choices=colourChoices)
+
+class outInForm(Form):
+    colourChoices = [('1', u'Bränd Umbra'), ('2', u'Nattsvart'), ('3', u'Skogsgrön'), ('4', u'Turkos'), ('5', u'Scharlakansröd'), ('6', u'Lila'), ('7', 'Gammelrosa')]
+    colour = SelectField(u'Färg', choices=colourChoices)
+
+class materialForm(Form):
+    colourChoices = [('1', u'Bränd Umbra'), ('2', u'Nattsvart'), ('3', u'Skogsgrön'), ('4', u'Turkos'), ('5', u'Scharlakansröd'), ('6', u'Lila'), ('7', 'Gammelrosa')]
+    colour = SelectField(u'Färg', choices=colourChoices)
+
 # }}}
 if __name__ == '__main__':
     app.debug = True
