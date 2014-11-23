@@ -1,6 +1,5 @@
 {% macro render_field(field) %}
 <tr>
-<td>{{ field.label }}</td>
 <td>{{ field(**kwargs)|safe }}</td>
 </tr>
 {% if field.errors %}

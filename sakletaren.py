@@ -64,7 +64,7 @@ class pages():
         if request.method == 'POST':
             sak['lastseen'] = form.lastSeen
             return redirect(redir)
-        return render_template('template.html', form=form, redir=redir, field=form.lastseen, label=form.lastSeen.label)
+        return render_template('template.html', form=form, redir=redir, field=form.lastSeen, label=form.lastSeen.label)
 
     @app.route('/outin', methods = ['GET', 'POST'])
     def OutIn():
@@ -73,7 +73,7 @@ class pages():
         if request.method == 'POST':
             sak['outin'] = form.outIn
             return redirect(redir)
-        return render_template('template.html', form=form, redir=redir, field=form.outin, label=form.outIn.label)
+        return render_template('template.html', form=form, redir=redir, field=form.outIn, label=form.outIn.label)
 
     @app.route('/material', methods = ['GET', 'POST'])
     def Material():
@@ -86,7 +86,7 @@ class pages():
 
     @app.route('/found', methods = ['GET', 'POST'])
     def Found():
-        return "find"
+        return sak()
         # TODO return funny result
 
 # }}}
