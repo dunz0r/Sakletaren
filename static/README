@@ -1,0 +1,10 @@
+Font Oswald Light 300
+
+Light 300 = Normal (font-size = 12)
+Bold 700 = H1 (font-size = 16)
+Bold 700 = H2 (font-size = 14)
+Normal 400 = H1
+
+<link href='http://fonts.googleapis.com/css?family=Oswald:300,700,400' rel='stylesheet' type='text/css'>
+
+
