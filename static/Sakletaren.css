@@ -8,23 +8,23 @@
 
 
 body {
-	background-color: #F44336;
+	background-color: #2196f3;
 	font-family: 'Oswald', sans-serif;
 	font-size: 14px;
-	color: #FF8A80;
+	color: #f5f5f5;
 }
 
 
 h1 {
-	background-color: #EF9A9A;
-	color: #FF4081;
+	background-color: ##2196f3;
+	color: #f5f5f5;
 	font-family: 'Oswald', sans-serif;
 	font-size: 16px;
 	text-align: center;
 }
 
 h2 {
-	background-color: #EF9A9A;
+	background-color: ##2196f3;
 	color: #FF4081;
 	font-family: 'Oswald', sans-serif;
 	font-size: 14px;
@@ -33,9 +33,9 @@ h2 {
 
 
 p {
-	background-color: #EF9A9A;
-	color: #FF4081;
+	background-color: #f5f5f5;
+	color: #1565c0;
 	font-family: "";
-	font-size: 20px;
+	font-size: 12px;
 }
 
