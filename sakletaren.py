@@ -21,5 +21,5 @@ app = Flask(__name__)
 def index():
     return "Sakletaren"
 
-if __name == '__main__':
+if __name__ == '__main__':
     app.run()
