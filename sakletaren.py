@@ -18,41 +18,47 @@ app = Flask(__name__)
 # }}}
 # {{{ pages
 class sak():
+    """This is the main class for sak to find.
+    It holds all the pages
+    """
+
+    sakProperties = {}
+
     @app.route('/')
     def index():
-        return render_template('size.html')
+        return render_template('first.html')
 
     @app.route('/size')
     def Size():
-        return 'def size'
+        return render_template('size.html')
 
     @app.route('/colour')
     def Colour():
-        return 'def colour'
+        return render_template('colour.html')
 
     @app.route('/weight')
     def Weight():
-        return 'def weight'
+        return render_template('weight.html')
 
     @app.route('/importance')
     def Importance():
-        return 'def importance'
+        return render_template('importance.html')
 
     @app.route('/electronic')
     def Electronic():
-        return 'def electronic'
+        return render_template('electronic.html')
 
     @app.route('/lastseen')
     def LastSeen():
-        return 'def sakLastSeen'
+        return render_template('lastseen.html')
 
     @app.route('/outin')
     def OutIn():
-        return 'def outIn'
+        return render_template('outin.html')
 
     @app.route('/material')
     def Material():
-        return 'def sakMaterial'
+        return render_template('material.html')
 
 # }}}
 if __name__ == '__main__':
