@@ -9,57 +9,55 @@
 """
 A silly app for finding stuff
 """
-
 # {{{ Libraries and global settings
 
 from flask import Flask, render_template
+from wtforms import Form, BooleanField, TextField, TextAreaField, SelectField
 
 app = Flask(__name__)
 # }}}
 # {{{ pages
-class sak():
-    """This is the main class for sak to find.
-    It holds all the pages
-    """
+@app.route('/')
+def index():
+    return render_template('first.html')
 
-    sakProperties = {}
+@app.route('/size')
+def Size():
+    return render_template('size.html')
 
-    @app.route('/')
-    def index():
-        return render_template('first.html')
+@app.route('/colour')
+def Colour():
+    return render_template('colour.html')
 
-    @app.route('/size')
-    def Size():
-        return render_template('size.html')
+@app.route('/weight')
+def Weight():
+    return render_template('weight.html')
 
-    @app.route('/colour')
-    def Colour():
-        return render_template('colour.html')
+@app.route('/importance')
+def Importance():
+    return render_template('importance.html')
 
-    @app.route('/weight')
-    def Weight():
-        return render_template('weight.html')
+@app.route('/electronic')
+def Electronic():
+    return render_template('electronic.html')
 
-    @app.route('/importance')
-    def Importance():
-        return render_template('importance.html')
+@app.route('/lastseen')
+def LastSeen():
+    return render_template('lastseen.html')
 
-    @app.route('/electronic')
-    def Electronic():
-        return render_template('electronic.html')
+@app.route('/outin')
+def OutIn():
+    return render_template('outin.html')
 
-    @app.route('/lastseen')
-    def LastSeen():
-        return render_template('lastseen.html')
+@app.route('/material')
+def Material():
+    return render_template('material.html')
 
-    @app.route('/outin')
-    def OutIn():
-        return render_template('outin.html')
-
-    @app.route('/material')
-    def Material():
-        return render_template('material.html')
-
+# }}}
+# {{{ forms
+class sizeForm(Form):
+    sizeChoices = [('1', 'Liten'), ('2','Lagom'), ('3','Ganska stor'), ('3', 'Sjukt stor')]
+    size = SelectField(u'Storlek', choices=sizeChoices)
 # }}}
 if __name__ == '__main__':
     app.debug = True
