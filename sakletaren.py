@@ -17,31 +17,42 @@ from flask import Flask
 app = Flask(__name__)
 # }}}
 # {{{ pages
-@app.route('/')
-def index():
-    return "Index page"
+class sak():
+    @app.route('/')
+    def index():
+        return "Index page"
 
-@app.route('/size')
-def sakSize():
-    return 'def size'
+    @app.route('/size')
+    def Size():
+        return 'def size'
 
-@app.route('/colour')
-def sakColour():
-    return 'def colour'
+    @app.route('/colour')
+    def Colour():
+        return 'def colour'
 
-@app.route('/weight')
-def sakWeight():
-    return 'def weight'
+    @app.route('/weight')
+    def Weight():
+        return 'def weight'
 
+    @app.route('/importance')
+    def Importance():
+        return 'def importance'
 
-@app.route('/importance')
-def sakImportance():
-    return 'def importance'
+    @app.route('/electronic')
+    def Electronic():
+        return 'def electronic'
 
-@app.route('/electronic')
-def sakElectronic():
-    return 'def electronic'
+    @app.route('/lastseen')
+    def LastSeen():
+        return 'def sakLastSeen'
 
+    @app.route('/outin')
+    def OutIn():
+        return 'def outIn'
+
+    @app.route('/material')
+    def Material():
+        return 'def sakMaterial'
 
 # }}}
 if __name__ == '__main__':
