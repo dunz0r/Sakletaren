@@ -12,7 +12,7 @@ A silly app for finding stuff
 
 # {{{ Libraries and global settings
 
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 # }}}
