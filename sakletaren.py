@@ -11,7 +11,7 @@ A silly app for finding stuff
 """
 # {{{ Libraries and global settings
 
-from flask import Flask, render_template, request, url_for
+from flask import Flask, render_template, request, redirect
 from wtforms import Form, BooleanField, TextField, TextAreaField, SelectField
 
 app = Flask(__name__)
@@ -34,7 +34,7 @@ class pages():
         if request.method == 'POST':
             sak['colour'] = form.colour
             return redirect('/weight')
-        return render_template('colour.html')
+        return render_template('colour.html', form=form)
 
     @app.route('/weight')
     def Weight():
