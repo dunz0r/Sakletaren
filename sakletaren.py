@@ -11,7 +11,7 @@ A silly app for finding stuff
 """
 # {{{ Libraries and global settings
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, url_for
 from wtforms import Form, BooleanField, TextField, TextAreaField, SelectField
 
 app = Flask(__name__)
@@ -19,15 +19,11 @@ app = Flask(__name__)
 # {{{ pages
 class pages():
     @app.route('/', methods = ['GET', 'POST'])
-    def index():
+    def Size():
         form = sizeForm(request.form)
         if request.method == 'POST' and form.validate():
             sak['size'] = form.size
         return render_template('first.html', form=form)
-
-    @app.route('/size')
-    def Size():
-        return render_template('size.html')
 
     @app.route('/colour')
     def Colour():
