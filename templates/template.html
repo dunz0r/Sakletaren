@@ -1,0 +1,15 @@
+{% extends "_template_include.html" %}
+{% from "_formhelpers.html" import render_field %}
+{% block title %}Index{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block content %}
+<h2>{{ label }}</h2>
+<form method="GET" action="{{ redir }}">
+	<table>
+		{{ render_field(field) }}
+	</table>
+	<input type=submit method=POST value=N&auml;sta>
+</form>
+{% endblock %}
