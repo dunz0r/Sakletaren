@@ -20,7 +20,7 @@ app = Flask(__name__)
 class sak():
     @app.route('/')
     def index():
-        return "Index page"
+        return render_template('index.html')
 
     @app.route('/size')
     def Size():
